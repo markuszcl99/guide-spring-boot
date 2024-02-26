@@ -1,0 +1,5 @@
+org.springframework.boot.BootstrapRegistryInitializer=com.markus.spring.boot.extendsion.MarkusBootstrapRegistryInitializer
+org.springframework.context.ApplicationContextInitializer=com.markus.spring.boot.extendsion.MarkusApplicationContextInitializer
+org.springframework.context.ApplicationListener=com.markus.spring.boot.extendsion.MarkusContextStartingApplicationListener,\
+  com.markus.spring.boot.extendsion.MarkusContextRefreshedApplicationListener,\
+  com.markus.spring.boot.extendsion.MarkusContextStartedApplicationListener
