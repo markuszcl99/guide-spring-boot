@@ -32,8 +32,18 @@ public class ApplicationStarter {
    *        2.4.3 打印 Banner (不打印、打印到 logger 日志、打印到控制台)
    *          2.4.3.1 Banner 可以自定义(图片 Banner and 文案 Banner)，默认为 SpringBanner
    *            两个配置 spring.banner.location | spring.banner.image.location
-   *
-   *
+   *      2.5 创建 ApplicationContext 并初始化
+   *        2.5.1 创建上下文 ConfigurableApplicationContext
+   *        2.5.2 初始化上下文 ConfigurableApplicationContext
+   *          2.5.2.1 设置 Environment
+   *          2.5.2.2 应用上下文的后置处理（主要是一些单例 Bean 的注册，例如：BeanNameGenerator、ResourceLoader、ConversionService），该方法子类也可以重写
+   *          2.5.2.3 事件通知，包括 ApplicationContextInitializer#initialize、BootstrapContextClosedEvent
+   *          2.5.2.4 BeanFactory 的初始化工作
+   *          2.5.2.5 初始化 BeanDefinitionLoader，并提前进行部分 Configuration Bean Class 的加载
+   *          2.5.2.6 SpringApplicationRunListeners#contextLoaded 事件通知
+   *      2.6 启动 ApplicationContext 上下文（进入到 ApplicationContext 的生命周期）
+   *      2.7 SpringApplicationRunListeners#started 事件通知
+   *      2.8 执行 ApplicationRunner#run 以及 CommandLineRunner#run 方法
    * @param args
    */
   public static void main(String[] args) {
