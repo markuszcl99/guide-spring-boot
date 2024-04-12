@@ -1,6 +1,6 @@
-package com.markus.springboot.project.accumuldation.service;
+package com.markus.springboot.project.accumuldation.domain.user.service;
 
-import com.markus.springboot.project.accumuldation.controller.dto.UserRequestDTO;
+import com.markus.springboot.project.accumuldation.trigger.controller.dto.UserRequestDTO;
 
 /**
  * @author: markus

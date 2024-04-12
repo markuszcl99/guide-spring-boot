@@ -1,4 +1,4 @@
-package com.markus.springboot.project.accumuldation.exception;
+package com.markus.springboot.project.accumuldation.app.exception;
 
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 

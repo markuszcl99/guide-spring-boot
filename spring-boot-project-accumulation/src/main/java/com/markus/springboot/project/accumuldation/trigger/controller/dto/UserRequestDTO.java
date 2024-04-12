@@ -1,4 +1,4 @@
-package com.markus.springboot.project.accumuldation.controller.dto;
+package com.markus.springboot.project.accumuldation.trigger.controller.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

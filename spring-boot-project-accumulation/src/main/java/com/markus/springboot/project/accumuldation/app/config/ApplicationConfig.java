@@ -1,4 +1,4 @@
-package com.markus.springboot.project.accumuldation.config;
+package com.markus.springboot.project.accumuldation.app.config;
 
 import org.springframework.context.annotation.Configuration;
 

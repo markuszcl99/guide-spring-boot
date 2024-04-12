@@ -1,7 +1,7 @@
-package com.markus.springboot.project.accumuldation.service.impl;
+package com.markus.springboot.project.accumuldation.domain.user.service.impl;
 
-import com.markus.springboot.project.accumuldation.controller.dto.UserRequestDTO;
-import com.markus.springboot.project.accumuldation.service.UserService;
+import com.markus.springboot.project.accumuldation.trigger.controller.dto.UserRequestDTO;
+import com.markus.springboot.project.accumuldation.domain.user.service.UserService;
 import org.springframework.stereotype.Service;
 
 /**

@@ -1,7 +1,7 @@
-package com.markus.springboot.project.accumuldation.controller;
+package com.markus.springboot.project.accumuldation.trigger.controller;
 
-import com.markus.springboot.project.accumuldation.controller.dto.UserRequestDTO;
-import com.markus.springboot.project.accumuldation.service.UserService;
+import com.markus.springboot.project.accumuldation.trigger.controller.dto.UserRequestDTO;
+import com.markus.springboot.project.accumuldation.domain.user.service.UserService;
 import com.markus.springboot.project.accumuldation.types.common.Constants;
 import com.markus.springboot.project.accumuldation.types.model.Response;
 import org.springframework.beans.factory.annotation.Autowired;

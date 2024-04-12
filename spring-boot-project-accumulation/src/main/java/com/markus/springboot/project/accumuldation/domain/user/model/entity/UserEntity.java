@@ -1,4 +1,4 @@
-package com.markus.springboot.project.accumuldation.domain.model.entity;
+package com.markus.springboot.project.accumuldation.domain.user.model.entity;
 
 /**
  * @author: markus
