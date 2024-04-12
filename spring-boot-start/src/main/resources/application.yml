@@ -1,0 +1,3 @@
+spring:
+  banner:
+    location: META-INF/my_banner.txt
