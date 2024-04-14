@@ -8,7 +8,7 @@ package com.markus.springboot.project.accumuldation.domain.user.model.entity;
  * It's my honor to share what I've learned with you!
  */
 public class UserEntity {
-    private long userId;
+    private long id;
     private String username;
     private int age;
 }

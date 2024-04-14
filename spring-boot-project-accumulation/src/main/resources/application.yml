@@ -8,4 +8,9 @@ spring:
 # mybatis 相关配置
 mybatis:
   mapper-locations: classpath:mapper/*Mapper.xml
-  type-aliases-package: com.markus.
+  type-aliases-package: com.markus.springboot.project.accumuldation.domain
+
+logging:
+  level:
+    root: debug
+
