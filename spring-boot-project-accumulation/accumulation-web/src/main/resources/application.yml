@@ -1,0 +1,5 @@
+spring:
+  config:
+    name: spring-boot-project-accumulation
+  profiles:
+    active: dev

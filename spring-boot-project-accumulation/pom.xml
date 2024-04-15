@@ -8,6 +8,13 @@
         <artifactId>guide-spring-boot</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+    <modules>
+        <module>accumulation-service</module>
+        <module>accumulation-api</module>
+        <module>accumulation-core</module>
+        <module>accumulation-web</module>
+    </modules>
+    <packaging>pom</packaging>
 
     <artifactId>spring-boot-project-accumulation</artifactId>
 
@@ -15,8 +22,24 @@
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <knife4j.version>4.0.0</knife4j.version>
+        <mybaits-plus.version>3.5.2</mybaits-plus.version>
     </properties>
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.xiaoymin</groupId>
+                <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
+                <version>${knife4j.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybaits-plus.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -43,5 +66,7 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
+
+
     </dependencies>
 </project>
