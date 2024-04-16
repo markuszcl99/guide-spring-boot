@@ -1,10 +1,13 @@
 package com.markus.accumulation.service.user.service.user;
 
+import com.markus.accumulation.api.exception.ExceptionUtil;
+import com.markus.accumulation.api.vo.constants.StatusEnum;
 import com.markus.accumulation.api.vo.user.UserInfoSaveReq;
 import com.markus.accumulation.service.user.repository.dao.UserDAO;
 import com.markus.accumulation.service.user.repository.entity.UserInfoDO;
 import com.markus.accumulation.service.user.service.IUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -24,8 +27,10 @@ public class UserService implements IUserService {
     private UserDAO userDAO;
 
     @Override
+    @Transactional
     public void saveUserInfo(UserInfoSaveReq userInfoSaveReq) {
         UserInfoDO userInfoDO = toDO(userInfoSaveReq);
         userDAO.save(userInfoDO);
+        throw ExceptionUtil.of(StatusEnum.FORBID_ERROR);
     }
 }

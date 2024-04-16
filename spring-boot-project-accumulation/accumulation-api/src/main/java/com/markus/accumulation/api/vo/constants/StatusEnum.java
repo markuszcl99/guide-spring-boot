@@ -29,6 +29,7 @@ import lombok.Getter;
 public enum StatusEnum {
 
     SUCCESS(0, "OK"),
+    FORBID_ERROR(100_403_001, "无权限"),
     ;
 
 
