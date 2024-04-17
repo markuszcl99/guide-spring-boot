@@ -1,8 +1,12 @@
 package com.markus.accumulation.service.user.service.user;
 
 import com.markus.accumulation.api.exception.ExceptionUtil;
+import com.markus.accumulation.api.vo.PageResult;
+import com.markus.accumulation.api.vo.Response;
 import com.markus.accumulation.api.vo.constants.StatusEnum;
 import com.markus.accumulation.api.vo.user.UserInfoSaveReq;
+import com.markus.accumulation.api.vo.user.UserPageRequest;
+import com.markus.accumulation.api.vo.user.dto.UserInfoDTO;
 import com.markus.accumulation.service.user.repository.dao.UserDAO;
 import com.markus.accumulation.service.user.repository.entity.UserInfoDO;
 import com.markus.accumulation.service.user.service.IUserService;
@@ -31,6 +35,13 @@ public class UserService implements IUserService {
     public void saveUserInfo(UserInfoSaveReq userInfoSaveReq) {
         UserInfoDO userInfoDO = toDO(userInfoSaveReq);
         userDAO.save(userInfoDO);
-        throw ExceptionUtil.of(StatusEnum.FORBID_ERROR);
+//        throw ExceptionUtil.of(StatusEnum.FORBID_ERROR);
+    }
+
+    @Override
+    public Response<PageResult<UserInfoDTO>> findPage(UserPageRequest userPageRequest) {
+        // 采用分页插件完成分页
+//        userDAO.page()
+        return null;
     }
 }

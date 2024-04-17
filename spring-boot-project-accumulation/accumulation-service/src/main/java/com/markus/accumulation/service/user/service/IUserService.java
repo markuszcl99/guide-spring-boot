@@ -1,6 +1,11 @@
 package com.markus.accumulation.service.user.service;
 
+import com.markus.accumulation.api.vo.PageRequest;
+import com.markus.accumulation.api.vo.PageResult;
+import com.markus.accumulation.api.vo.Response;
 import com.markus.accumulation.api.vo.user.UserInfoSaveReq;
+import com.markus.accumulation.api.vo.user.UserPageRequest;
+import com.markus.accumulation.api.vo.user.dto.UserInfoDTO;
 
 /**
  * @author: markus
@@ -12,4 +17,6 @@ import com.markus.accumulation.api.vo.user.UserInfoSaveReq;
 public interface IUserService {
 
     void saveUserInfo(UserInfoSaveReq userInfoSaveReq);
+
+    Response<PageResult<UserInfoDTO>> findPage(UserPageRequest userPageRequest);
 }
