@@ -47,14 +47,6 @@ public class UserService implements IUserService {
 
     @Override
     public Response<PageResult<UserInfoDTO>> findPage(UserPageRequest userPageRequest) {
-        // 采用分页插件完成分页
-        int pageNum = userPageRequest.getPageNum();
-        int pageSize = userPageRequest.getPageSize();
-        PageHelper.startPage(pageNum, pageSize);
-        // 此处实际上是一个 Page<T> 实例
-        List<UserInfoDO> userInfoDOList = userDAO.list();
-        PageInfo<UserInfoDO> pageInfo = new PageInfo<>(userInfoDOList);
-        PageResult<UserInfoDTO> pageResult = PageUtils.getPageResult(pageInfo, UserConverter::toDTOs);
-        return Response.ok(pageResult);
+        return Response.ok(userDAO.listUserInfoByUserPageRequest(userPageRequest));
     }
 }
