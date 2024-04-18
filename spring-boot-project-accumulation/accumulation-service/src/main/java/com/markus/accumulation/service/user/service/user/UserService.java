@@ -1,5 +1,7 @@
 package com.markus.accumulation.service.user.service.user;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.markus.accumulation.api.exception.ExceptionUtil;
 import com.markus.accumulation.api.vo.PageResult;
 import com.markus.accumulation.api.vo.Response;
@@ -7,6 +9,8 @@ import com.markus.accumulation.api.vo.constants.StatusEnum;
 import com.markus.accumulation.api.vo.user.UserInfoSaveReq;
 import com.markus.accumulation.api.vo.user.UserPageRequest;
 import com.markus.accumulation.api.vo.user.dto.UserInfoDTO;
+import com.markus.accumulation.core.util.PageUtils;
+import com.markus.accumulation.service.user.converter.UserConverter;
 import com.markus.accumulation.service.user.repository.dao.UserDAO;
 import com.markus.accumulation.service.user.repository.entity.UserInfoDO;
 import com.markus.accumulation.service.user.service.IUserService;
@@ -15,7 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
+import java.util.List;
+
 import static com.markus.accumulation.service.user.converter.UserConverter.toDO;
+import static com.markus.accumulation.service.user.converter.UserConverter.toDTOs;
 
 /**
  * @author: markus
@@ -41,7 +48,13 @@ public class UserService implements IUserService {
     @Override
     public Response<PageResult<UserInfoDTO>> findPage(UserPageRequest userPageRequest) {
         // 采用分页插件完成分页
-//        userDAO.page()
-        return null;
+        int pageNum = userPageRequest.getPageNum();
+        int pageSize = userPageRequest.getPageSize();
+        PageHelper.startPage(pageNum, pageSize);
+        // 此处实际上是一个 Page<T> 实例
+        List<UserInfoDO> userInfoDOList = userDAO.list();
+        PageInfo<UserInfoDO> pageInfo = new PageInfo<>(userInfoDOList);
+        PageResult<UserInfoDTO> pageResult = PageUtils.getPageResult(pageInfo, UserConverter::toDTOs);
+        return Response.ok(pageResult);
     }
 }
