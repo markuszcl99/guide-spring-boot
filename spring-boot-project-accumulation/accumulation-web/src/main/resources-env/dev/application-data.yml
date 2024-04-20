@@ -1,0 +1,12 @@
+spring:
+  # mysql 数据库配置
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://127.0.0.1:3306/spring_boot_project?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  # redis 配置
+  redis:
+    host: localhost
+    port: 6379
+    password: markus

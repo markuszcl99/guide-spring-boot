@@ -24,6 +24,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <knife4j.version>4.0.0</knife4j.version>
         <mybaits-plus.version>3.5.2</mybaits-plus.version>
+        <guava-version>32.1.3-jre</guava-version>
     </properties>
 
     <dependencyManagement>
@@ -40,4 +41,56 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <!-- 该元素定义了不同环境配置文件-->
+    <profiles>
+        <!-- 本地开发 -->
+        <profile>
+            <id>dev</id>
+            <properties>
+                <env>dev</env>
+            </properties>
+            <!-- 默认激活环境 -->
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <!-- 测试 -->
+        <profile>
+            <id>test</id>
+            <properties>
+                <env>test</env>
+            </properties>
+        </profile>
+        <!-- 预发 -->
+        <profile>
+            <id>staging</id>
+            <properties>
+                <env>staging</env>
+            </properties>
+        </profile>
+        <!-- 生产 -->
+        <profile>
+            <id>prod</id>
+            <properties>
+                <env>prod</env>
+            </properties>
+        </profile>
+    </profiles>
+
+    <!-- 钙元素定义了构建过程中资源文件的加载方式-->
+    <build>
+        <resources>
+            <!-- 主资源目录 -->
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <!-- 根据环境动态加载的资源目录 -->
+            <resource>
+                <directory>src/main/resources-env/${env}</directory>
+                <!--表示这个资源目录需要进行资源过滤，即将占位符替换为实际的属性值 -->
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
 </project>

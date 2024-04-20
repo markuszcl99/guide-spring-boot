@@ -12,6 +12,7 @@
         <module>spring-boot-extension</module>
         <module>spring-boot-start</module>
         <module>spring-boot-project-accumulation</module>
+        <module>spring-boot-starter-redis</module>
     </modules>
 
     <properties>

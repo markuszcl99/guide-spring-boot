@@ -4,9 +4,3 @@ spring:
     password: root
     url: jdbc:mysql://127.0.0.1:3306/spring_boot_project?useUnicode=true&characterEncoding=utf8&autoReconnect=true&zeroDateTimeBehavior=convertToNull&serverTimezone=UTC&useSSL=true
     driver-class-name: com.mysql.cj.jdbc.Driver
-
-pagehelper:
-  dialect: mysql
-  reasonable: true
-  support-methods-arguments: true
-  params: count=countSql
