@@ -7,10 +7,7 @@ import com.markus.accumulation.api.vo.user.UserInfoSaveReq;
 import com.markus.accumulation.api.vo.user.UserPageRequest;
 import com.markus.accumulation.api.vo.user.dto.UserInfoDTO;
 import com.markus.accumulation.service.user.service.IUserService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -34,8 +31,25 @@ public class UserAccountController {
         return Response.ok(null);
     }
 
+    @PostMapping("/update")
+    public Response<Void> update(@RequestBody UserInfoSaveReq userInfoSaveReq) {
+        userService.updateUserInfo(userInfoSaveReq);
+        return Response.ok(null);
+    }
+
+    @PostMapping("/delete")
+    public Response<Void> delete(@RequestParam("userId") Long userId) {
+        userService.deleteUserInfo(userId);
+        return Response.ok(null);
+    }
+
     @PostMapping("/findPage")
     public Response<PageResult<UserInfoDTO>> findPage(@RequestBody UserPageRequest userPageRequest) {
         return userService.findPage(userPageRequest);
+    }
+
+    @GetMapping("/query")
+    public Response<UserInfoDTO> queryUserInfo(@RequestParam("userId") Long userId) {
+        return userService.queryUserInfoByUserId(userId);
     }
 }
