@@ -49,4 +49,6 @@ public class AccumulationCoreAutoConfiguration {
         return cacheManager;
     }
 
+
+
 }

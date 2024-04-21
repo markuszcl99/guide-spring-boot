@@ -25,6 +25,7 @@
         <knife4j.version>4.0.0</knife4j.version>
         <mybaits-plus.version>3.5.2</mybaits-plus.version>
         <guava-version>32.1.3-jre</guava-version>
+        <spring-kafka.version>2.8.2</spring-kafka.version>
     </properties>
 
     <dependencyManagement>
@@ -38,6 +39,11 @@
                 <groupId>com.baomidou</groupId>
                 <artifactId>mybatis-plus-boot-starter</artifactId>
                 <version>${mybaits-plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>${spring-kafka.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
