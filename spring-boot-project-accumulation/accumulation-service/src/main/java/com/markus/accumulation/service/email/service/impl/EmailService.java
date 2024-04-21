@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 public class EmailService implements IEmailService {
 
     @Autowired
-    private KafkaTemplate<String, Object> kafkaTemplate;
+    private KafkaTemplate<String, String> kafkaTemplate;
 
     @Value("${kafka.topic.name}")
     private String topicName;
