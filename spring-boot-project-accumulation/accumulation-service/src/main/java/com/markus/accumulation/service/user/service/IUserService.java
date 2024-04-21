@@ -6,6 +6,8 @@ import com.markus.accumulation.api.vo.user.UserInfoSaveReq;
 import com.markus.accumulation.api.vo.user.UserPageRequest;
 import com.markus.accumulation.api.vo.user.dto.UserInfoDTO;
 
+import java.util.List;
+
 /**
  * @author: markus
  * @date: 2024/4/14 3:14 PM
@@ -16,11 +18,14 @@ import com.markus.accumulation.api.vo.user.dto.UserInfoDTO;
 public interface IUserService {
 
     void saveUserInfo(UserInfoSaveReq userInfoSaveReq);
+
     void updateUserInfo(UserInfoSaveReq userInfoSaveReq);
 
     void deleteUserInfo(Long userId);
 
     Response<UserInfoDTO> queryUserInfoByUserId(Long userId);
+
+    Response<List<UserInfoDTO>> queryUserInfosByUsername(String username);
 
     Response<PageResult<UserInfoDTO>> findPage(UserPageRequest userPageRequest);
 }

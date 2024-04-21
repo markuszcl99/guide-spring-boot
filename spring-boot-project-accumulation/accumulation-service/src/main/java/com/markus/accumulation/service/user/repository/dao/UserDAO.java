@@ -47,4 +47,11 @@ public class UserDAO extends ServiceImpl<UserInfoMapper, UserInfoDO> {
         PageInfo<UserInfoDO> pageInfo = new PageInfo<>(userInfoDOList);
         return PageUtils.getPageResult(pageInfo, UserConverter::toDTOs);
     }
+
+    public List<UserInfoDTO> queryUserInfoByUsername(String username) {
+        LambdaQueryWrapper<UserInfoDO> query = Wrappers.lambdaQuery();
+        query.eq(UserInfoDO::getUsername, username);
+        List<UserInfoDO> userInfoDOS = list(query);
+        return UserConverter.toDTOs(userInfoDOS);
+    }
 }

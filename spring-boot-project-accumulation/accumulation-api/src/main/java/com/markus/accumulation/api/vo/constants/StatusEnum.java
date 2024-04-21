@@ -30,6 +30,7 @@ public enum StatusEnum {
 
     SUCCESS(0, "OK"),
     FORBID_ERROR(100_403_001, "无权限"),
+    CACHE_READ_EXCEPTION(100_500_001, "读取缓存时出现异常,缓存 key 为 %s"),
     ;
 
 

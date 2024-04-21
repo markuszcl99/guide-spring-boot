@@ -1,7 +1,12 @@
 package com.markus.accumulation.service.user.service.user;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
+import com.markus.accumulation.api.exception.ExceptionUtil;
 import com.markus.accumulation.api.vo.PageResult;
 import com.markus.accumulation.api.vo.Response;
+import com.markus.accumulation.api.vo.constants.StatusEnum;
 import com.markus.accumulation.api.vo.user.UserInfoSaveReq;
 import com.markus.accumulation.api.vo.user.UserPageRequest;
 import com.markus.accumulation.api.vo.user.dto.UserInfoDTO;
@@ -10,12 +15,15 @@ import com.markus.accumulation.service.user.repository.entity.UserInfoDO;
 import com.markus.accumulation.service.user.service.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+
+import java.util.List;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 import static com.markus.accumulation.service.user.converter.UserConverter.*;
 
@@ -32,6 +40,23 @@ public class UserService implements IUserService {
 
     @Resource
     private UserDAO userDAO;
+
+    private CacheBuilder<Object, Object> cacheBuilder =
+            CacheBuilder.newBuilder()
+                    .maximumSize(100) // 最大缓存条目
+                    .expireAfterAccess(30, TimeUnit.MINUTES) // 缓存项在指定时间内没有被访问就过期
+                    .recordStats(); // 开启统计功能
+
+    // 本地缓存
+    private LoadingCache<String, List<UserInfoDTO>> userInfoCache = cacheBuilder.build(new CacheLoader<String, List<UserInfoDTO>>() {
+
+        @Override
+        public List<UserInfoDTO> load(String username) throws Exception {
+            // 当缓存中没有值时，加载对应的值并返回
+            log.error("出现缓存击穿...");
+            return userDAO.queryUserInfoByUsername(username);
+        }
+    });
 
     @Override
     @Transactional
@@ -66,7 +91,16 @@ public class UserService implements IUserService {
         UserInfoDO userInfoDO = userDAO.getById(userId);
         log.error("execute this method...");
         return Response.ok(toDTO(userInfoDO));
+    }
 
+    @Override
+    public Response<List<UserInfoDTO>> queryUserInfosByUsername(String username) {
+        try {
+            // 这里会先去本地缓存查找，如果本地缓存没有，就去数据库中查找
+            return Response.ok(userInfoCache.get(username));
+        } catch (ExecutionException e) {
+            throw ExceptionUtil.of(StatusEnum.CACHE_READ_EXCEPTION, username);
+        }
     }
 
     @Override

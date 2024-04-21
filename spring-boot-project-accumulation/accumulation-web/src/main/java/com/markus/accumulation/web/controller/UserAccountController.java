@@ -10,6 +10,7 @@ import com.markus.accumulation.service.user.service.IUserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author: markus
@@ -51,5 +52,10 @@ public class UserAccountController {
     @GetMapping("/query")
     public Response<UserInfoDTO> queryUserInfo(@RequestParam("userId") Long userId) {
         return userService.queryUserInfoByUserId(userId);
+    }
+
+    @GetMapping("/query-by-username")
+    public Response<List<UserInfoDTO>> queryUserInfoByUsername(@RequestParam("username") String username) {
+        return userService.queryUserInfosByUsername(username);
     }
 }
