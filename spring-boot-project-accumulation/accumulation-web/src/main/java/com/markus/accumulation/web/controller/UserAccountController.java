@@ -6,7 +6,10 @@ import com.markus.accumulation.api.vo.Response;
 import com.markus.accumulation.api.vo.user.UserInfoSaveReq;
 import com.markus.accumulation.api.vo.user.UserPageRequest;
 import com.markus.accumulation.api.vo.user.dto.UserInfoDTO;
+import com.markus.accumulation.core.util.JsonUtil;
 import com.markus.accumulation.service.user.service.IUserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,6 +25,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/user/account")
 public class UserAccountController {
+
+    private static final Logger logger = LoggerFactory.getLogger(UserAccountController.class);
 
     @Resource
     private IUserService userService;
@@ -46,6 +51,7 @@ public class UserAccountController {
 
     @PostMapping("/findPage")
     public Response<PageResult<UserInfoDTO>> findPage(@RequestBody UserPageRequest userPageRequest) {
+        logger.info("userPageRequest is {}", JsonUtil.toStr(userPageRequest));
         return userService.findPage(userPageRequest);
     }
 
