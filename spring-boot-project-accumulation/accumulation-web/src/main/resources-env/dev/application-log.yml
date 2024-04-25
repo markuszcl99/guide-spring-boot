@@ -1,0 +1,5 @@
+custom:
+  log:
+    filter:
+      prefix: com.markus.accumulation
+      level: WARN

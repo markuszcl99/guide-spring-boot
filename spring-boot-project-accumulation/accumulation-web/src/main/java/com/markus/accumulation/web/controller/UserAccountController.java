@@ -52,6 +52,7 @@ public class UserAccountController {
     @PostMapping("/findPage")
     public Response<PageResult<UserInfoDTO>> findPage(@RequestBody UserPageRequest userPageRequest) {
         logger.info("userPageRequest is {}", JsonUtil.toStr(userPageRequest));
+        logger.error("userPageRequest is {}", JsonUtil.toStr(userPageRequest));
         return userService.findPage(userPageRequest);
     }
 

@@ -4,7 +4,7 @@ spring:
   config:
     name: spring-boot-project-accumulation
     # 导入自定义 yml 配置
-    import: application-data.yml,application-mq.yml
+    import: application-data.yml,application-mq.yml,application-log.yml
 
 logging:
   config: classpath:log4j2.xml
